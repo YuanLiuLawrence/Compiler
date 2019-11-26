@@ -22,7 +22,7 @@ public class StatementFactory {
 
     private static Map<String,Stmt> statements = new HashMap<String,Stmt>();
 
-    public Stmt getStatement(String[] token) {
+    public static Stmt getStatement(String token) {
         for (int i = 0; i < stmtClasses.length; i++) {
             Class<?> cls = null;
             Constructor<?> constructor = null;
