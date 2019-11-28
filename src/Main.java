@@ -9,6 +9,7 @@ public class Main {
         //init the stmt class that contains genCode function that checks the 1st arg to check the stmt first
         //then based on the stmt, execute the corresponding functions
         BufferedReader reader = null;
+        Stmt stmt = new Stmt();
         try {
             reader = new BufferedReader(new FileReader(args));
             String line = null;
@@ -25,7 +26,7 @@ public class Main {
                 String token = tokens[0];
                 if (token != null) {
                     if (token.matches("decl|retr|call|add|...")) {
-                        Stmt stmt = StatementFactory.getStatement(token);
+                        //Stmt stmt = StatementFactory.getStatement(token);
                         stmt.genCode(tokens);
                     } else {
                         System.out.println("Unknown stmt: "+token);
