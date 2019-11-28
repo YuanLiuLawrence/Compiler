@@ -131,7 +131,7 @@ public class Stmt {
     }
 
     public void lab(String input){
-
+        pushi(input);
     }
     //public void subr(String input){} this is the head func
     public void printi(String input){
@@ -241,7 +241,14 @@ public class Stmt {
 
     public void popm(String val) {
         //bc.pushi val
+        pushi(val);
         //bc.popm
+        byte[] instr = new byte[] {(byte) 0x4C};
+        try {
+            writer.write(instr);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     } // pop the top entry val entries from the stack. The values in the stack are lost. val will be an integer. //76
 
@@ -255,36 +262,80 @@ public class Stmt {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     } //pop the top val to the var
+
     public void peek(String var, String val){
         //pushi (var)
+        pushi(var);
         //pushi val
+        pushi(val);
         //bc.peek<type>
-
+        byte[] instr = new byte[] {0x56};
+        try {
+            writer.write(instr);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     } //var = stack[sp+val]. The types of the stack entry and the variable var must be the same. sp+val should be a valid stack entry. //86
 
     public void poke(String val, String var){
         //pushi (var)
+        pushi(var);
         //pushi val
+        pushi(val);
         //bc.poke<type>
+        byte[] instr = new byte[] {0x5A};
+        try {
+            writer.write(instr);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }// val var: stack[sp+val] = var. The types of the stack entry and the variable var must be the same. //90
 
     public void swp(){
         //swp,94
+        byte[] instr = new byte[] {0x5E};
+        try {
+            writer.write(instr);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     public void add(){
         //100
+        byte[] instr = new byte[] {0x64};
+        try {
+            writer.write(instr);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     public void sub(){
         //104
+        byte[] instr = new byte[] {0x68};
+        try {
+            writer.write(instr);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     public void mul(){
         //108
+        byte[] instr = new byte[] {0x6C};
+        try {
+            writer.write(instr);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     public void div(){
         //112
+        byte[] instr = new byte[] {0x70};
+        try {
+            writer.write(instr);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
