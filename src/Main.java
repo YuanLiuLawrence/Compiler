@@ -6,6 +6,8 @@ import java.io.*;
 public class Main {
     //test the compiler
     public static void main(String args) throws IOException {
+        //init the stmt class that contains genCode function that checks the 1st arg to check the stmt first
+        //then based on the stmt, execute the corresponding functions
         BufferedReader reader = null;
         try {
             reader = new BufferedReader(new FileReader(args));
