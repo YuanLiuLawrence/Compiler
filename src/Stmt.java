@@ -3,13 +3,49 @@ import java.nio.ByteBuffer;
 import java.util.*;
 import java.lang.*;
 import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 public class Stmt {
     //init the symbol table to check the corresponding the var's val, like a stack
     public static Map<String,Integer> symbol_table = new HashMap<String, Integer>();
     public static int sp = 0;
     //this symbol table is to keep track of the unknown vars
-    public static Map<String,Integer> unknown_symbol_table = new HashMap<String, Integer>();
+    public static Map<String,Integer> label_table = new HashMap<String, Integer>();
     public static int u_sp = 0;
+
+    //read the file first, to update the label sections, which allows the thing happen
+    public Stmt(String file){
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new FileReader(file));
+            String line = null;
+            try {
+                line = reader.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            while (line != null) {
+                line = line.trim( );
+                line = line.replaceAll(",", " , ");
+                line = line.replaceAll("\\s+", " ");
+                String[ ] tokens = line.split("\\s");
+                String token = tokens[0];
+                if (token != null) {
+                    if (token.matches("decl|retr|call|add|...")) {
+                        //Stmt stmt = StatementFactory.getStatement(token);
+
+                    } else {
+                        System.out.println("Unknown stmt: "+token);
+                    }
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            System.out.print("done");
+        }
+    }//the file table is built
 
 
     public FileOutputStream writer;
@@ -132,6 +168,9 @@ public class Stmt {
 
     public void lab(String input){
         pushi(input);
+        symbol_table.put(input, sp);
+        sp+=1;
+        label_table.put(input,sp);
     }
     //public void subr(String input){} this is the head func
     public void printi(String input){
