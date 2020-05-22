@@ -1,2 +1,1 @@
-# Compiler
-Simple Compiler done by java
+# Developed a compiler which complied the input text files into binary files in Java.
